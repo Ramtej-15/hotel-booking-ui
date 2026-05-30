@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 <body>
   <h2>New listing</h2>
-  <form action="/listing" method="post">
+  <form action="/listing" method="post" novalidate class="needs-validation">
     <div class="row">
       <div class="col-8 offset-2">
         <div class="mb-3">
@@ -11,11 +11,16 @@
             name="listing[title]"
             placeholder="enter title"
             class="form-control"
+            required
           /><br />
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-          <textarea name="listing[description]" class="form-control"></textarea>
+          <textarea
+            name="listing[description]"
+            class="form-control"
+            required
+          ></textarea>
         </div>
         <div class="mb-3">
           <label for="image" class="form-label">Image URL</label>
@@ -34,6 +39,7 @@
               name="listing[price]"
               placeholder="enter price"
               class="form-control"
+              required
             />
           </div>
           <div class="mb-3 col-md-8">
@@ -43,6 +49,7 @@
               name="listing[country]"
               placeholder="enter country"
               class="form-control"
+              required
             />
           </div>
         </div>
@@ -53,6 +60,7 @@
             name="listing[location]"
             placeholder="enter location"
             class="form-control"
+            required
           /><br />
         </div>
         <button class="btn btn-dark add-btn">Add</button>
