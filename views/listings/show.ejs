@@ -32,29 +32,30 @@
 </div>
 <div class="mb-3 mt-3">
   <h3>Add a Review</h3>
-  <form action="/listing/<%= listing.id %>/reviews" method="post"></form>
-  <div>
-    <label for="rating">Rating</label>
-    <input
-      type="range"
-      min="1"
-      max="5"
-      name="review[rating]"
-      id="rating"
-      class="form-range"
-    />
-  </div>
-  <div class="mb-3 mt-3 mb-3">
-    <label for="comment">Comments</label>
-    <textarea
-      name="review[comment]"
-      id="comment"
-      cols="30"
-      rows="5"
-      class="form-control"
-    ></textarea>
-  </div>
-  <div>
-    <button class="btn outline-button-dark">Submit</button>
-  </div>
+  <form action="/listing/<%= listing.id %>/reviews" method="post">
+    <div>
+      <label for="rating">Rating</label>
+      <input
+        type="range"
+        min="1"
+        max="5"
+        name="review[rating]"
+        id="rating"
+        class="form-range"
+      />
+    </div>
+    <div class="mb-3 mt-3 mb-3">
+      <label for="comment">Comments</label>
+      <textarea
+        name="review[comment]"
+        id="comment"
+        cols="30"
+        rows="5"
+        class="form-control"
+      ></textarea>
+    </div>
+    <div>
+      <button class="btn outline-button-dark">Submit</button>
+    </div>
+  </form>
 </div>

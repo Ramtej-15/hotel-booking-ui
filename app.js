@@ -139,14 +139,24 @@ app.delete(
 );
 
 //reviews
-app.post("/listings/:id/reviews", async (req, res) => {
-  let listing = await Listing.findById(req.params.id);
-  let newReview = new Review(req.body.review);
-  listing.reviews.push(newReview);
+app.post(
+  "/listing/:id/reviews",
+  wrapAsync(async (req, res) => {
+    let listing = await Listing.findById(req.params.id);
 
-  await newReview.save();
-  await listing.save();
-});
+    if (!listing) {
+      throw new ExpressError(404, "Listing not found");
+    }
+
+    let newReview = new Review(req.body.review);
+    listing.reviews.push(newReview);
+
+    await newReview.save();
+    await listing.save();
+
+    res.redirect(`/listing/${listing._id}`);
+  }),
+);
 // 404 Route
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page not found"));
