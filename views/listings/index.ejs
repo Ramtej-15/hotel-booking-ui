@@ -2,7 +2,7 @@
 <body>
    
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-         <% for(let listing of AllListings){ %>
+         <% for(let listing of allListings){ %>
             <div class="card col">
                 <a href="/listing/<%= listing._id %>" class="listing-line text-dark">
                 <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem">

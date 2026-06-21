@@ -8,6 +8,7 @@ const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/WrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const listingSchema = require("./schema.js");
+const Review = require("./models/review");
 
 // MongoDB Connection
 main()
@@ -137,6 +138,15 @@ app.delete(
   }),
 );
 
+//reviews
+app.post("/listings/:id/reviews", async (req, res) => {
+  let listing = await Listing.findById(req.params.id);
+  let newReview = new Review(req.body.review);
+  listing.reviews.push(newReview);
+
+  await newReview.save();
+  await listing.save();
+});
 // 404 Route
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page not found"));

@@ -1,17 +1,8 @@
+const { ref } = require("joi");
 const mongoose = require("mongoose");
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-main()
-  .then(() => {
-    console.log("connected to dbs");
-  })
-  .catch((err) => console.log(err));
-
-async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/Wonderlust");
-}
-
-const listingschema = new schema({
+const listingschema = new Schema({
   title: {
     type: String,
     required: true,
@@ -46,6 +37,12 @@ const listingschema = new schema({
   country: {
     type: String,
   },
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 });
 const Listing = mongoose.model("Listing", listingschema);
 module.exports = Listing;
